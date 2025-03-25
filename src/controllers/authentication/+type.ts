@@ -8,3 +8,15 @@ export type SignUpWithUsernameAndPasswordResponseResult = {
     token: string;
     user: User;
 }
+export type loginWithUserNameAndPAsswordResult =
+{
+  token: string;
+  user: User
+}
+
+
+export enum SignInWithUsernameAndPasswordError {
+  INVALID_CREDENTIALS = "INVALID_CREDENTIALS",
+  UNKNOWN = "UNKNOWN",
+} 
+
