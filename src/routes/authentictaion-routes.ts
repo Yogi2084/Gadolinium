@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { loginWithUserNameAndPAsswordResult, signUpWithUsernameAndPasswordResponseResult } from "../controllers/authentication/authentication-controller";
 import { SignInWithUsernameAndPasswordError, SignupError } from "../controllers/authentication/authentication-type";
+
 export const authentictaionRoutes = new Hono();
 authentictaionRoutes.post("/sign-up", async (c) => {
     const { username, password } = await c.req.json();
@@ -41,3 +42,4 @@ authentictaionRoutes.post("/sign-in", async (c) => {
       }
     }
   });
+ 

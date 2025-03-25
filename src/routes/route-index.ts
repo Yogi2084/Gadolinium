@@ -1,14 +1,29 @@
 import { Hono } from "hono";
 import { authentictaionRoutes } from "./authentictaion-routes";
+import { userRoutes } from "./user-routes";
+
 export const allroutes = new Hono();
 
+allroutes.use(async (c, next) => {
+  console.log("http method",c.req.method);
+  console.log("url",c.req.url);
+  await next();
+});
 allroutes.route("/authentication", authentictaionRoutes)
 
-allroutes.get("/health", (c) => {
-  return c.json(
-    {
-      message: "All Ok",
+allroutes.route("/users", userRoutes)
+
+allroutes.get("/health", (c,next) => {
+  console.log("http method",c.req.method);
+  console.log("url",c.req.url);
+  const authentication=c.req.header("authorization")
+ next();
     },
-    200
+    (c) => {
+      return c.json(
+        {
+          status: "ok",
+        },
+);
+}
   );
-});
